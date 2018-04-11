@@ -2,6 +2,7 @@
 #include<iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 #include "Cuartos.h"
 #include "Jugador.h"
 #include "HUD.h"
@@ -34,6 +35,7 @@ string nombre;
 string Accion;			// Acciones como: 'ir', 'examinar', 'guardar', 'salir', 'ver', 'intentar'
 string instruccion;		// Instrucciones como: 'norte', 'sur', 'este', 'oeste', 'salon1', 'pasillo1', 'inventario', 'brujula', 'instrucciones', 'partida', 'hablar'
 
+vector <int> Array_ActualPosition;
 						/* Variables lagunas legales */
 float dinero_Jugador = 200;
 int popularidad = 0;
@@ -51,7 +53,18 @@ int votos_Salon6 = 0;
 int votos_Salon7 = 0;
 int votos_Salon10 = 0;
 // SALONES
+void Posicion_Actual()
+{
+	cout << "Posicion Actual en Matriz: " << Mapa_Escuela[fila_X][columna_Y] << endl;
+	Array_ActualPosition.push_back(Mapa_Escuela[fila_X][columna_Y]);
 
+	cout << "Cuartos recorridos: ";
+	for (int i = 0; i < Array_ActualPosition.size(); i++)
+	{
+		cout << Array_ActualPosition[i] << ", ";
+	}
+	cout << endl;
+}
 // si mapa(fila x columna) && 'palabra' en arreglo, se ejecuta el paso de cuarto4
 void SALON_1() // Para conseguir el seguidor se requiere de 2 votos y 1 despensa, $90 pesos
 {
@@ -238,7 +251,7 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 {
 	if (Mapa_Escuela[fila_X][columna_Y] == 10)
 	{
-		Cuartos Salon_10(string("Politics - Shop"), string("Se dice que los duenos vienen de Rusia."), string("Norte"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::PROFESOR_CAPUCHINO);
+		Cuartos Salon_10(string("Politics - Shop"), string("Se dice que los duenos vienen de Rusia."), string("Norte"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::CARLOS_SALINAS);
 		cout << "Nombre del salon: " << Salon_10.nombreSalon << endl;
 		cout << "Descripcion: " << Salon_10.descripcionCuarto << endl;
 		cout << "Direcciones: " << Salon_10.opcion_Direccion << endl;
@@ -247,17 +260,17 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "examinar" && instruccion == "salon")
 	{
-		Cuartos Salon_10(string("Politics - Shop"), string("Se dice que los duenos vienen de Rusia."), string("Norte"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::PROFESOR_CAPUCHINO);
+		Cuartos Salon_10(string("Politics - Shop"), string("Se dice que los duenos vienen de Rusia."), string("Norte"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::CARLOS_SALINAS);
 		cout << Salon_10.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "intentar" && instruccion == "hablar")
 	{
-		Cuartos Salon_10(string("Politics - Shop"), string("Se dice que los duenos vienen de Rusia."), string("Norte"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::PROFESOR_CAPUCHINO);
+		Cuartos Salon_10(string("Politics - Shop"), string("Se dice que los duenos vienen de Rusia."), string("Norte"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::CARLOS_SALINAS);
 		cout << Salon_10.Get_Persona() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "ver" && instruccion == "tienda")
 	{
-		Cuartos Salon_10(string("Politics - Shop"), string("Los duenos del lugar vienen de otro pais."), string("Norte"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::PROFESOR_CAPUCHINO);
+		Cuartos Salon_10(string("Politics - Shop"), string("Los duenos del lugar vienen de otro pais."), string("Norte"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::CARLOS_SALINAS);
 		cout << "Bienvenido a la tienda 'Compra Votos'." << endl;
 
 		cout << endl;
@@ -548,8 +561,8 @@ void accion()
 {
 	cout << "--------------------------------------------" << endl;
 	cout << "Escribe la accion que quieras realizar:" << endl;
-	cout << "(?) Como jugar,\n tecle'como jugar'." << endl;
-	cout << "(?) Ayuda,\n tecle'ver instrucciones'." << endl;
+	cout << "(?) Como jugar, tecle 'como jugar'." << endl;
+	cout << "(?) Ayuda, tecle 'ver instrucciones'." << endl;
 	cout << "> ";
 	cin >> Accion >> instruccion;
 	cout << "____________________________________________" << endl;
@@ -636,9 +649,24 @@ void nueva_Partida()
 
 	while (true)
 	{
-		
+		fstream Nueva_Partida;
+		Nueva_Partida.open("Nueva_Partida.txt", ios::out);
+		if (Nueva_Partida.fail())
+		{
+			cout << "C0003: (!) Error de creacion de nueva partida." << endl;
+		}
+		for (int i = 0; i < Array_ActualPosition.size(); i++)
+		{
+			Nueva_Partida << Array_ActualPosition[i] << ", ";
+			
+		}
 		cout << "------  DATOS INSTALACIONES  ------" << endl;
 		// Se manda a llamar las funciones de los salones
+		cout << "Cuartos recorridos: ";
+
+		cout << endl;
+
+		Posicion_Actual();
 		SALON_1();
 		SALON_2();
 		SALON_6();
@@ -718,17 +746,17 @@ void nueva_Partida()
 			Como_Jugar();
 		}
 		// Instrucciones
-		if (Accion == "ver" && instruccion == "instrucciones")
+		else if (Accion == "ver" && instruccion == "instrucciones")
 		{
 			Instrucciones();
 		}\
-			// Brujula
-			if (Accion == "ver" && instruccion == "brujula")
+		// Brujula
+		else if (Accion == "ver" && instruccion == "brujula")
 			{
 				Brujula();
 			}
 		// Inventario
-		if (Accion == "ver" && instruccion == "inventario")
+		else if (Accion == "ver" && instruccion == "inventario")
 		{
 			string opcionInv;
 			cout << "Quieres agregar algo al inventario: si / ver" << endl;
@@ -754,7 +782,7 @@ void nueva_Partida()
 			}
 		}
 		// Fondos
-		if (Accion == "ver" && instruccion == "fondos")
+		else if (Accion == "ver" && instruccion == "fondos")
 		{
 			//Usuario.dinero -= 100; Prueba de fondos
 			cout << "------  LAGUNAS LEGALES  ------" << endl;
@@ -770,7 +798,7 @@ void nueva_Partida()
 			cout << endl;
 		}
 		// Promocion - se gana .5 centavos
-		if (Accion == "hacer" && instruccion == "promocion")
+		else if (Accion == "hacer" && instruccion == "promocion")
 		{
 			dinero_Jugador += .5;
 			cout << "Locutor: A los millones que buscan un alivio a los precios," << endl;
@@ -782,7 +810,7 @@ void nueva_Partida()
 			cout << endl;
 		}
 		// Cumplido - Se agrega 1 al contador de cumplidos
-		if (Accion == "hacer" && instruccion == "cumplido" && Mapa_Escuela[fila_X][columna_Y] == 7)
+		else if (Accion == "hacer" && instruccion == "cumplido" && Mapa_Escuela[fila_X][columna_Y] == 7)
 		{
 			cumplidos += 1;
 			cout << endl;
@@ -790,36 +818,102 @@ void nueva_Partida()
 			cout << "/* De esta manera no obtendras nada de mi. */" << endl;
 			cout << endl;
 		}
-		if (Accion == "hacer" && instruccion == "cumplido" && Mapa_Escuela[fila_X][columna_Y] != 7)
+		else if (Accion == "hacer" && instruccion == "cumplido" && Mapa_Escuela[fila_X][columna_Y] != 7)
 		{
 			cout << endl;
 			cout << "/*Aunque estes muy guapo aqui no hay nadie a quien poder hacerle un cumplido.*/" << endl;
 			cout << endl;
 		}
 		// Salir
-		if (Accion == "guardar" && instruccion == "partida")
+		else if (Accion == "guardar" && instruccion == "partida")
 		{
+			Nueva_Partida << endl;
+			// Se almacena la 'ultima' posicion actual
+			Nueva_Partida << Mapa_Escuela[fila_X][columna_Y] << endl;
+			Nueva_Partida << endl;
+			// Dinero Jugador
+			Nueva_Partida << dinero_Jugador << endl;
+			Nueva_Partida << endl;
+
+			// Popularidad
+			Nueva_Partida << popularidad << endl;
+			Nueva_Partida << endl;
+
+			// Seguidores
+			Nueva_Partida << seguidores << endl;
+			Nueva_Partida << endl;
+
+			// Votos
+			Nueva_Partida << votos << endl;
+			Nueva_Partida << endl;
+
+			// Despensas
+			Nueva_Partida << despensas << endl;
+			Nueva_Partida << endl;
+
+			// Politicos
+			Nueva_Partida << politicos << endl;
+			Nueva_Partida << endl;
+
+			// Cumplidos
+			Nueva_Partida << cumplidos << endl;		
+			Nueva_Partida << endl;
+
+			// Canciones 
+			Nueva_Partida << Canciones << endl;
+			Nueva_Partida << endl;
+			
+			// Votos_Salon1
+			Nueva_Partida << votos_Salon1 << endl;
+			Nueva_Partida << endl;
+
+			// Votos_Salon2
+			Nueva_Partida << votos_Salon2 << endl;
+			Nueva_Partida << endl;
+
+			// Votos_Salon6
+			Nueva_Partida << votos_Salon6 << endl;
+			Nueva_Partida << endl;
+
+			// Votos_Salon7
+			Nueva_Partida << votos_Salon7 << endl;
+			Nueva_Partida << endl;
+
+			// Votos_Salon10
+			Nueva_Partida << votos_Salon10 << endl;
+			Nueva_Partida << endl;
+
+			// Se cierra el documento
+			Nueva_Partida.close();
 			cout << "/* SE HA GUARDADO EXITOSAMENTE LA PARTIDA */" << endl;
 			break;
 		}
 
 		// Logro Margarita
-		if (cumplidos == 50)
+		else if (cumplidos == 50)
 		{
 			cout << endl;
 			cout << "/* LOGRO DESBLOQUEADO: CONQUISTADOR DE POLITICOS. */" << endl;
 			cout << endl;
 		}
 		// GANAR
-		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "publico" && popularidad >= 15 && seguidores >= 3) // El contador de ganar sera el que almacenara los puntos para ganar
+		else if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "publico" && popularidad >= 15 && seguidores >= 3) // El contador de ganar sera el que almacenara los puntos para ganar
 		{
 			Cuartos Pasillo_8(string("Pasillo 8"), string("Casilleros alrededor"), string("Este"), string("examinar salon, intentar hablar"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
 			cout << "/* HAS SIDO ELEGIDO PARA GOBERNAR */" << endl;
 			cout << "/* GRACIAS POR JUGAR */" << endl;
 			break;
 		}
+		else if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "publico" && popularidad >= 15 && votos_Salon10 <= 1) // El contador de ganar sera el que almacenara los puntos para ganar
+		{
+			Cuartos Pasillo_8(string("Pasillo 8"), string("Casilleros alrededor"), string("Este"), string("examinar salon, intentar hablar"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+			cout << "/*	DADA TU POPULARIDAD, CARLOS SALINAS TE SELECCIONO COMO SU TITERE PERSONAL PARA GOBERNAR EL PAIS. */" << endl;
+			cout << "/* HAS SIDO ELEGIDO PARA GOBERNAR */" << endl;
+			cout << "/* GRACIAS POR JUGAR */" << endl;
+			break;
+		}
 		// PERDER
-		if (dinero_Jugador <= 0)
+		else if (dinero_Jugador <= 0)
 		{
 			cout << endl;
 			cout << "     /* TE QUEDASTE SIN FONDOS */" << endl;
@@ -830,6 +924,12 @@ void nueva_Partida()
 			cout << "Puntos alcanzados: " << popularidad << endl;
 			cout << endl;
 			break;
+		}
+		else
+		{
+			cout << endl;
+			cout << "C0002: (!) Error de comando, posible error de escritura: " << Accion << " + " << instruccion << endl;
+			cout << endl;
 		}
 
 	}
@@ -877,7 +977,9 @@ void Menu_Principal()
 	}
 	else
 	{
-		cout << "Comando incorrecto, favor de verificar." << endl;
+		cout << endl;
+		cout << "C0001: (!) Comando incorrecto, posible error de escritura: " << opcionesMenu << endl;
+		cout << endl;
 	}
 
 }

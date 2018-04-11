@@ -21,7 +21,7 @@ enum objetos_Cuarto
 enum personas_Cuarto
 {
 	NADIE = 0,
-	PROFESOR_CAPUCHINO,
+	CARLOS_SALINAS,
 	GOBERNADOR_MARGARITA,
 	GOBERNADOR_ARISTOTELES,
 	BOSS_DUARTE,
@@ -74,6 +74,6 @@ private:
 		"Aqui no hay nada mas que publicidad ajena .-." };
 
 	personas_Cuarto Personas;
-	string Arreglo_personas[7] = { "LEMUS: Me gusta un candidato capaz, que apoye y tenga votos.","DUARTE: Si lo apoyo a usted, es para que luego me de la mitad de su ganancia.","ARISTOTELES: Me gusta un gobierno que no engane.", "MARGARITA: Me gusta un candidato honesto.", "???: Entre mas consuman de mis productos, mejor.",   "Aqui no se encuentra ninguna persona..." };
+	string Arreglo_personas[7] = { "LEMUS: Me gusta un candidato capaz, que apoye y tenga votos.","DUARTE: Si lo apoyo a usted, es para que luego me de la mitad de su ganancia.","ARISTOTELES: Me gusta un gobierno que no engane.", "MARGARITA: Me gusta un candidato honesto.", "CARLOS SALINAS: Entre mas consuman de mis productos, mejor.",   "Aqui no se encuentra ninguna persona..." };
 };
 
