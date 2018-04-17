@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <string.h>
+#include "windows.h"
 #include "Cuartos.h"
 #include "Jugador.h"
 #include "HUD.h"
@@ -11,15 +13,16 @@ using namespace std;
 // Se declara los espacios en el array para recorrer la matriz
 int Mapa_Escuela[5][11] =
 
-{ { 0, 0, 0, 0, 0, 0,  0,  0,  0,  0 },
+{ 
+	{ 0, 0, 0, 0, 0, 0,  0,  0,  0,  0 },
 
-{ 0, 1, 0, 2, 0, 0,  0,  0,  0,  0 }, // Se inicializa en la segunda posicion
+    { 0, 1, 0, 2, 0, 0,  0,  0,  0,  0 }, // Se inicializa en la segunda posicion
 
-{ 0, 3, 4, 5, 8, 9,  11, 12, 13, 0 },
+    { 0, 3, 4, 5, 8, 9,  11, 12, 13, 0 },
 
-{ 0, 6, 0, 7, 0, 10, 0,  0,  0,  0 },
+    { 0, 6, 0, 7, 0, 10, 0,  0,  0,  0 },
 
-{ 0, 0, 0, 0, 0, 0,  0,  0,  0,  0 }
+    { 0, 0, 0, 0, 0, 0,  0,  0,  0,  0 }
 };
 
 // Variables del Juego
@@ -35,9 +38,26 @@ string nombre;
 string Accion;			// Acciones como: 'ir', 'examinar', 'guardar', 'salir', 'ver', 'intentar'
 string instruccion;		// Instrucciones como: 'norte', 'sur', 'este', 'oeste', 'salon1', 'pasillo1', 'inventario', 'brujula', 'instrucciones', 'partida', 'hablar'
 
+/* DATOS GUARDAR PARTIDA */
 vector <int> Array_ActualPosition;
+vector <int> Puntuaciones;
+vector <int> FILA_X;
+vector <int> COLUMNA_Y;
+vector <int> DINERO;
+vector <int> POPULARIDAD;
+vector <int> SEGUIDORES;
+vector <int> VOTOS;
+vector <int> DESPENSAS;
+vector <int> POLITICOS;
+vector <int> CUMPLIDOS;
+vector <int> CANCIONES;
+vector <int> VOTOS_SALON1;
+vector <int> VOTOS_SALON2;
+vector <int> VOTOS_SALON6;
+vector <int> VOTOS_SALON7;
+vector <int> VOTOS_SALON10;
 						/* Variables lagunas legales */
-float dinero_Jugador = 200;
+int dinero_Jugador = 200;
 int popularidad = 0;
 int seguidores = 0;
 int votos = 0;
@@ -46,12 +66,12 @@ int politicos = 0;
 int cumplidos = 0;		// Si se llega a un cierto numero de cumplidos de otorgaran 3 votos
 int Canciones = 0;
 
-bool convencido_Salon1 = false;
 int votos_Salon1 = 0;
 int votos_Salon2 = 0;
 int votos_Salon6 = 0;
 int votos_Salon7 = 0;
 int votos_Salon10 = 0;
+
 // SALONES
 void Posicion_Actual()
 {
@@ -65,6 +85,68 @@ void Posicion_Actual()
 	}
 	cout << endl;
 }
+
+// MOVIMIENTO
+/* Funcion del Aviso */
+void precaucion_Pared()
+{
+	cout << endl;
+	cout << "Hay una pared, amigo. No creo que puedas atravesarla." << endl;
+	cout << endl;
+}
+void Movimiento()
+{
+
+	// Norte
+	if (Accion == "ir" && instruccion == "norte") // Norte
+	{
+		if (Mapa_Escuela[fila_X - 1][columna_Y] != 0)
+		{
+			fila_X -= 1;
+		}
+		else
+		{
+			precaucion_Pared();
+		}
+	}
+	// Sur
+	if (Accion == "ir" && instruccion == "sur") // Sur
+	{
+		if (Mapa_Escuela[fila_X + 1][columna_Y] != 0)
+		{
+			fila_X += 1;
+		}
+		else
+		{
+			precaucion_Pared();
+		}
+	}
+	// Este
+	if (Accion == "ir" && instruccion == "este") //Oeste
+	{
+		if (Mapa_Escuela[fila_X][columna_Y + 1] != 0)
+		{
+			columna_Y += 1;
+		}
+		else
+		{
+			precaucion_Pared();
+		}
+	}
+	// Oeste
+	if (Accion == "ir" && instruccion == "oeste")
+	{
+		if (Mapa_Escuela[fila_X][columna_Y - 1] != 0)
+		{
+			columna_Y -= 1;
+		}
+		else
+		{
+			precaucion_Pared();
+		}
+	}
+}
+
 // si mapa(fila x columna) && 'palabra' en arreglo, se ejecuta el paso de cuarto4
 void SALON_1() // Para conseguir el seguidor se requiere de 2 votos y 1 despensa, $90 pesos
 {
@@ -75,7 +157,7 @@ void SALON_1() // Para conseguir el seguidor se requiere de 2 votos y 1 despensa
 		cout << "Descripcion: " << Salon_1.descripcionCuarto << endl;
 		cout << "Direcciones: " << Salon_1.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Salon_1.acciones << endl;
-		cout << "Numero Cuarto: " << Salon_1.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Salon_1.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -96,7 +178,6 @@ void SALON_1() // Para conseguir el seguidor se requiere de 2 votos y 1 despensa
 		cout << "/* FELICIDADES TIENES UN NUEVO SEGUIDOR */" << endl;
 		cout << "/* Se Otorgan 50 pesos mas al fondo de la campana electoral */" << endl;
 		cout << endl;
-		convencido_Salon1 = true;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "convencer" && instruccion == "publico" && votos < 2 && despensas < 1)
 	{
@@ -121,7 +202,7 @@ void SALON_2() // Para conseguir al seguidor se requiere
 		cout << "Descripcion: " << Salon_2.descripcionCuarto << endl;
 		cout << "Direcciones: " << Salon_2.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Salon_2.acciones << endl;
-		cout << "Numero Cuarto: " << Salon_2.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Salon_2.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -167,7 +248,7 @@ void SALON_6()
 		cout << "Descripcion: " << Salon_6.descripcionCuarto << endl;
 		cout << "Direcciones: " << Salon_6.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Salon_6.acciones << endl;
-		cout << "Numero Cuarto: " << Salon_6.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Salon_6.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -211,7 +292,7 @@ void SALON_7() // Para conseguir al seguidor se requiere 4 votos y 5 despensas, 
 		cout << "Descripcion: " << Salon_7.descripcionCuarto << endl;
 		cout << "Direcciones: " << Salon_7.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Salon_7.acciones << endl;
-		cout << "Numero Cuarto: " << Salon_7.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Salon_7.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -256,7 +337,7 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 		cout << "Descripcion: " << Salon_10.descripcionCuarto << endl;
 		cout << "Direcciones: " << Salon_10.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Salon_10.acciones << endl;
-		cout << "Numero Cuarto: " << Salon_10.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Salon_10.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -350,7 +431,7 @@ void PASILLO_1()
 		cout << "Descripcion: " << Pasillo_1.descripcionCuarto << endl;
 		cout << "Direcciones: " << Pasillo_1.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_1.acciones << endl;
-		cout << "Numero Cuarto: " << Pasillo_1.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Pasillo_1.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 3 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -372,7 +453,7 @@ void PASILLO_2()
 		cout << "Descripcion: " << Pasillo_2.descripcionCuarto << endl;
 		cout << "Direcciones: " << Pasillo_2.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_2.acciones << endl;
-		cout << "Numero Cuarto: " << Pasillo_2.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Pasillo_2.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 4 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -394,7 +475,7 @@ void PASILLO_3()
 		cout << "Descripcion: " << Pasillo_3.descripcionCuarto << endl;
 		cout << "Direcciones: " << Pasillo_3.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_3.acciones << endl;
-		cout << "Numero Cuarto: " << Pasillo_3.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Pasillo_3.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 5 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -416,7 +497,7 @@ void PASILLO_4()
 		cout << "Descripcion: " << Pasillo_4.descripcionCuarto << endl;
 		cout << "Direcciones: " << Pasillo_4.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_4.acciones << endl;
-		cout << "Numero Cuarto: " << Pasillo_4.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Pasillo_4.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 8 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -438,7 +519,7 @@ void PASILLO_5()
 		cout << "Descripcion: " << Pasillo_5.descripcionCuarto << endl;
 		cout << "Direcciones: " << Pasillo_5.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_5.acciones << endl;
-		cout << "Numero Cuarto: " << Pasillo_5.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Pasillo_5.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 9 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -460,7 +541,7 @@ void PASILLO_6()
 		cout << "Descripcion: " << Pasillo_6.descripcionCuarto << endl;
 		cout << "Direcciones: " << Pasillo_6.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_6.acciones << endl;
-		cout << "Numero Cuarto: " << Pasillo_6.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Pasillo_6.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 11 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -482,7 +563,7 @@ void PASILLO_7()
 		cout << "Descripcion: " << Pasillo_7.descripcionCuarto << endl;
 		cout << "Direcciones: " << Pasillo_7.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_7.acciones << endl;
-		cout << "Numero Cuarto: " << Pasillo_7.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Pasillo_7.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 12 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -504,7 +585,7 @@ void PASILLO_8()
 		cout << "Descripcion: " << Pasillo_8.descripcionCuarto << endl;
 		cout << "Direcciones: " << Pasillo_8.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_8.acciones << endl;
-		cout << "Numero Cuarto: " << Pasillo_8.numeroHabitacion << endl;
+		// cout << "Numero Cuarto: " << Pasillo_8.numeroHabitacion << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -531,6 +612,7 @@ void Historia()
 	cout << "Cada seis anos se hace el cambio de representante presidencial en el congreso electoral, en este lugar, " << endl;
 	cout << "los representantes politicos, postulan a su candidato para demostrar cuantos seguidores tienen y cual es su " << endl;
 	cout << "propuesta para liderear al pais, antiguos candidatos decidiran si apoyan a ese reprentante o no..." << endl;
+	Sleep(3000);
 }
 
 /* Funcion del Menu de la brujula */
@@ -567,12 +649,6 @@ void accion()
 	cin >> Accion >> instruccion;
 	cout << "____________________________________________" << endl;
 	cout << endl;
-}
-
-/* Funcion del Aviso */
-void precaucion_Pared()
-{
-	cout << "Hay una pared, amigo. No creo que puedas atravesarla." << endl;
 }
 
 /* Funcion del Menu principal */
@@ -624,7 +700,7 @@ void Instrucciones()
 	cout << "= 10) Si desea examinar un pasillo..........\tESCRIBA 'examinar + pasillo'.=" << endl;
 	cout << "= 11) Si desea intentar hablar.............\tESCRIBA 'intentar + hablar'.  =" << endl;
 	cout << "= 12) Si desea guardar y salir del juego...\tESCRIBA 'guardar + partida'.  =" << endl;
-	cout << "= 13) Si desea ver su dinero...............\tESCRIBA 'ver + fondos'.       =" << endl;
+	cout << "= 13) Si desea ver sus stats................\tESCRIBA 'ver + stats'.       =" << endl;
 	cout << "= 14) Si desea ver la tienda...............\tESCRIBA 'ver + tienda'.       =" << endl;
 	cout << "= 15) Si desea convencer al publico....... \tESCRIBA 'convencer + publico'.=" << endl;
 	cout << "= 16) Si desea hacer promocion............ \tESCRIBA 'hacer + promocion'.  =" << endl;
@@ -635,12 +711,91 @@ void Instrucciones()
 	cout << endl;
 }
 
+/* Guardar */
+void Guardar()
+{
+	fstream Nueva_Partida;
+	Nueva_Partida.open("Nueva_Partida.txt", ios::out);
+	if (Nueva_Partida.fail())
+	{
+		cout << "C0003: (!) Error de creacion de nueva partida." << endl;
+	}
+	// Guardar
+	if (Accion == "guardar" && instruccion == "partida")
+	{
+		// Se almacena la 'ultima' posicion actual
+		Nueva_Partida << fila_X << endl;
+		Nueva_Partida << endl;
+		Nueva_Partida << columna_Y << endl;
+		Nueva_Partida << endl;
+		// Dinero Jugador
+		Nueva_Partida << dinero_Jugador << endl;
+		Nueva_Partida << endl;
+
+		// Popularidad
+		Nueva_Partida << popularidad << endl;
+		Nueva_Partida << endl;
+
+		// Seguidores
+		Nueva_Partida << seguidores << endl;
+		Nueva_Partida << endl;
+
+		// Votos
+		Nueva_Partida << votos << endl;
+		Nueva_Partida << endl;
+
+		// Despensas
+		Nueva_Partida << despensas << endl;
+		Nueva_Partida << endl;
+
+		// Politicos
+		Nueva_Partida << politicos << endl;
+		Nueva_Partida << endl;
+
+		// Cumplidos
+		Nueva_Partida << cumplidos << endl;
+		Nueva_Partida << endl;
+
+		// Canciones 
+		Nueva_Partida << Canciones << endl;
+		Nueva_Partida << endl;
+
+		// Votos_Salon1
+		Nueva_Partida << votos_Salon1 << endl;
+		Nueva_Partida << endl;
+
+		// Votos_Salon2
+		Nueva_Partida << votos_Salon2 << endl;
+		Nueva_Partida << endl;
+
+		// Votos_Salon6
+		Nueva_Partida << votos_Salon6 << endl;
+		Nueva_Partida << endl;
+
+		// Votos_Salon7
+		Nueva_Partida << votos_Salon7 << endl;
+		Nueva_Partida << endl;
+
+		// Votos_Salon10
+		Nueva_Partida << votos_Salon10 << endl;
+		Nueva_Partida << endl;
+
+		// Se cierra el documento
+		Nueva_Partida.close();
+		cout << "/* C004: (!) SE HA GUARDADO EXITOSAMENTE LA PARTIDA */" << endl;
+		cout << endl;
+		cout << "/* Nombre de la partida guardada: Nueva_Partida.txt */" << endl;
+		cout << endl;
+		
+	}
+}
+
 /* Funcion de nueva partida */
 void nueva_Partida()
 {
 	// Variable del inventario
 
-	Jugador Usuario(string("charre"), 500);
+	Jugador Usuario(string("charre"));
 	//cout << "Ingresa tu nombre: " << endl;
 	//cin >> nombre;
 
@@ -649,24 +804,13 @@ void nueva_Partida()
 
 	while (true)
 	{
-		fstream Nueva_Partida;
-		Nueva_Partida.open("Nueva_Partida.txt", ios::out);
-		if (Nueva_Partida.fail())
-		{
-			cout << "C0003: (!) Error de creacion de nueva partida." << endl;
-		}
-		for (int i = 0; i < Array_ActualPosition.size(); i++)
-		{
-			Nueva_Partida << Array_ActualPosition[i] << ", ";
-			
-		}
+		
 		cout << "------  DATOS INSTALACIONES  ------" << endl;
 		// Se manda a llamar las funciones de los salones
-		cout << "Cuartos recorridos: ";
-
 		cout << endl;
-
-		Posicion_Actual();
+		Movimiento();
+		Guardar();
+		// Posicion_Actual();
 		SALON_1();
 		SALON_2();
 		SALON_6();
@@ -687,56 +831,7 @@ void nueva_Partida()
 		// Valores Estaticos
 		accion(); // Se pregunta que se quiere realizar
 
-				  // MOVIMIENTO
-
-				  // Norte
-		if (Accion == "ir" && instruccion == "norte") // Norte
-		{
-			if (Mapa_Escuela[fila_X - 1][columna_Y] != 0)
-			{
-				fila_X -= 1;
-			}
-			else
-			{
-				precaucion_Pared();
-			}
-		}
-		// Sur
-		if (Accion == "ir" && instruccion == "sur") // Sur
-		{
-			if (Mapa_Escuela[fila_X + 1][columna_Y] != 0)
-			{
-				fila_X += 1;
-			}
-			else
-			{
-				precaucion_Pared();
-			}
-		}
-		// Este
-		if (Accion == "ir" && instruccion == "este") //Oeste
-		{
-			if (Mapa_Escuela[fila_X][columna_Y + 1] != 0)
-			{
-				columna_Y += 1;
-			}
-			else
-			{
-				precaucion_Pared();
-			}
-		}
-		// Oeste
-		if (Accion == "ir" && instruccion == "oeste")
-		{
-			if (Mapa_Escuela[fila_X][columna_Y - 1] != 0)
-			{
-				columna_Y -= 1;
-			}
-			else
-			{
-				precaucion_Pared();
-			}
-		}
+		
 
 		// ACCIONES
 		system("cls");
@@ -781,8 +876,8 @@ void nueva_Partida()
 				cin >> opcion;
 			}
 		}
-		// Fondos
-		else if (Accion == "ver" && instruccion == "fondos")
+		// Stats
+		else if (Accion == "ver" && instruccion == "stats")
 		{
 			//Usuario.dinero -= 100; Prueba de fondos
 			cout << "------  LAGUNAS LEGALES  ------" << endl;
@@ -797,16 +892,16 @@ void nueva_Partida()
 			cout << endl;
 			cout << endl;
 		}
-		// Promocion - se gana .5 centavos
+		// Promocion - se gana 1 PESO
 		else if (Accion == "hacer" && instruccion == "promocion")
 		{
-			dinero_Jugador += .5;
+			dinero_Jugador += 1;
 			cout << "Locutor: A los millones que buscan un alivio a los precios," << endl;
 			cout << "la huida de impuestos, que buscan acabar con la guerra de naciones," << endl;
 			cout << "a esos millones la respuesta es el hombre del momento." << endl;
-			cout << "¡Es tiempo de un cambio : Vota Eisenhower el 4 de noviembre!" << endl;
+			cout << "¡Es tiempo de un cambio : Vota el 4 de noviembre!" << endl;
 			cout << endl;
-			cout << "/* SE HAN AGREGADO $.5 CENTAVOS A TUS FONDOS */" << endl;
+			cout << "/* SE HAN AGREGADO $1 PESO A TUS FONDOS */" << endl;
 			cout << endl;
 		}
 		// Cumplido - Se agrega 1 al contador de cumplidos
@@ -823,72 +918,14 @@ void nueva_Partida()
 			cout << endl;
 			cout << "/*Aunque estes muy guapo aqui no hay nadie a quien poder hacerle un cumplido.*/" << endl;
 			cout << endl;
-		}
-		// Salir
-		else if (Accion == "guardar" && instruccion == "partida")
+		}	
+		// Salir del Juego
+		else if (Accion == "exit" && instruccion == "game")
 		{
-			Nueva_Partida << endl;
-			// Se almacena la 'ultima' posicion actual
-			Nueva_Partida << Mapa_Escuela[fila_X][columna_Y] << endl;
-			Nueva_Partida << endl;
-			// Dinero Jugador
-			Nueva_Partida << dinero_Jugador << endl;
-			Nueva_Partida << endl;
-
-			// Popularidad
-			Nueva_Partida << popularidad << endl;
-			Nueva_Partida << endl;
-
-			// Seguidores
-			Nueva_Partida << seguidores << endl;
-			Nueva_Partida << endl;
-
-			// Votos
-			Nueva_Partida << votos << endl;
-			Nueva_Partida << endl;
-
-			// Despensas
-			Nueva_Partida << despensas << endl;
-			Nueva_Partida << endl;
-
-			// Politicos
-			Nueva_Partida << politicos << endl;
-			Nueva_Partida << endl;
-
-			// Cumplidos
-			Nueva_Partida << cumplidos << endl;		
-			Nueva_Partida << endl;
-
-			// Canciones 
-			Nueva_Partida << Canciones << endl;
-			Nueva_Partida << endl;
-			
-			// Votos_Salon1
-			Nueva_Partida << votos_Salon1 << endl;
-			Nueva_Partida << endl;
-
-			// Votos_Salon2
-			Nueva_Partida << votos_Salon2 << endl;
-			Nueva_Partida << endl;
-
-			// Votos_Salon6
-			Nueva_Partida << votos_Salon6 << endl;
-			Nueva_Partida << endl;
-
-			// Votos_Salon7
-			Nueva_Partida << votos_Salon7 << endl;
-			Nueva_Partida << endl;
-
-			// Votos_Salon10
-			Nueva_Partida << votos_Salon10 << endl;
-			Nueva_Partida << endl;
-
-			// Se cierra el documento
-			Nueva_Partida.close();
-			cout << "/* SE HA GUARDADO EXITOSAMENTE LA PARTIDA */" << endl;
-			break;
+			cout << "C0007: (!) El programa se cerrara en breve." << endl;
+			Sleep(3000);
+			exit(1);
 		}
-
 		// Logro Margarita
 		else if (cumplidos == 50)
 		{
@@ -938,8 +975,134 @@ void nueva_Partida()
 /* Funcion de cargar partida */
 void cargar_partida()
 {
-	cout << "Aqui se cargara la partida." << endl;
+	string Delimiter = " ";
+	ifstream Cargar_Partida;
+	int Datos;
+	Cargar_Partida.open("Nueva_Partida.txt", ios::in);
+	if (Cargar_Partida.fail())
+	{
+		cout << "C0005: (!) Error de Carga del archivo." << endl;
+	}
+	while (Cargar_Partida >> Datos) // Se almacenan todos los datos del archivo
+	{
+		Puntuaciones.push_back(Datos);
+		//cout << Datos << endl;
+	}
+	if (Puntuaciones.size() < 1) // Error en caso de documento vacio
+	{
+		cout << "C0006: (!) Error de Carga del archivo: No cuenta con un archivo al cual cargar." << endl;
+		cout << "C0007: (!) El programa se cerrara en breve." << endl;
+		Sleep(6000);
+		exit(1);
+	}
+	for (int i = 0; i < 1; i++) // Fila_X
+	{
+		FILA_X.push_back(Puntuaciones[i]);
+		// cout << "Fila_X: " << Puntuaciones[i] << endl;
+		fila_X = Puntuaciones[i];
+	}
+	// cout << "En el vector Fila_X: " << FILA_X.size() << endl;
+	for (int i = 1; i < 2; i++) // Columna_Y
+	{
+		COLUMNA_Y.push_back(Puntuaciones[i]);
+		// cout << "Columna_Y: " << Puntuaciones[i] << endl;
+		columna_Y = Puntuaciones[i];
+	}
+	// cout << "En el vector Columna_Y: " << COLUMNA_Y.size() << endl;
+	for (int i = 2; i < 3; i++) // Dinero
+	{
+		DINERO.push_back(Puntuaciones[i]);
+		// cout << "Dinero: " << Puntuaciones[i] << endl;
+		dinero_Jugador = Puntuaciones[i];
+	}
+	// cout << "En el vector Dinero: " << DINERO.size() << endl;
+	for (int i = 3; i < 4; i++) // Popularidad
+	{
+		POPULARIDAD.push_back(Puntuaciones[i]);
+		// cout << "Popularidad: " << Puntuaciones[i] << endl;
+		popularidad = Puntuaciones[i];
+	}
+	// cout << "En el vector Popularidad: " << POPULARIDAD.size() << endl;
+	for (int i = 4; i < 5; i++) // Seguidores
+	{
+		SEGUIDORES.push_back(Puntuaciones[i]);
+		// cout << "Seguidores: " << Puntuaciones[i] << endl;
+		seguidores = Puntuaciones[i];
+	}
+	// cout << "En el vector Seguidores: " << SEGUIDORES.size() << endl;
+	for (int i = 5; i < 6; i++) // Votos
+	{
+		VOTOS.push_back(Puntuaciones[i]);
+		// cout << "Votos: " << Puntuaciones[i] << endl;
+		votos = Puntuaciones[i];
+	}
+	// cout << "En el vector Votos: " << VOTOS.size() << endl;
+	for (int i = 6; i < 7; i++) // Despensas
+	{
+		DESPENSAS.push_back(Puntuaciones[i]);
+		// cout << "Despensas: " << Puntuaciones[i] << endl;
+		despensas = Puntuaciones[i];
+	}
+	// cout << "En el vector Despensas: " << DESPENSAS.size() << endl;
+	for (int i = 7; i < 8; i++) // Politicos
+	{
+		POLITICOS.push_back(Puntuaciones[i]);
+		// cout << "Politicos: " << Puntuaciones[i] << endl;
+		politicos = Puntuaciones[i];
+	}
+	// cout << "En el vector Politicos: " << POLITICOS.size() << endl;
+	for (int i = 8; i < 9; i++) // Cumplidos
+	{
+		CUMPLIDOS.push_back(Puntuaciones[i]);
+		// cout << "Cumplidos: " << Puntuaciones[i] << endl;
+		cumplidos = Puntuaciones[i];
+	}
+	// cout << "En el vector Cumplidos: " << CUMPLIDOS.size() << endl;
+	for (int i = 9; i < 10; i++) // Canciones
+	{
+		CANCIONES.push_back(Puntuaciones[i]);
+		// cout << "Canciones: " << Puntuaciones[i] << endl;
+		Canciones = Puntuaciones[i];
+	}
+	// cout << "En el vector Canciones: " << CANCIONES.size() << endl;
+	for (int i = 10; i < 11; i++) // Votos_Salon1
+	{
+		VOTOS_SALON1.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon1: " << Puntuaciones[i] << endl;
+		votos_Salon1 = Puntuaciones[i];
+	}
+	// cout << "En el vector Votos_Salon1: " << VOTOS_SALON1.size() << endl;
+	for (int i = 11; i < 12; i++) // Votos_Salon2
+	{
+		VOTOS_SALON2.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon2: " << Puntuaciones[i] << endl;
+		votos_Salon2 = Puntuaciones[i];
+	}
+	// cout << "En el vector Votos_Salon2: " << VOTOS_SALON2.size() << endl;
+	for (int i = 12; i < 13; i++) // Votos_Salon6
+	{
+		VOTOS_SALON6.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon6: " << Puntuaciones[i] << endl;
+		votos_Salon6 = Puntuaciones[i];
+	}
+	// cout << "En el vector Votos_Salon6: " << VOTOS_SALON6.size() << endl;
+	for (int i = 13; i < 14; i++) // Votos_Salon7
+	{
+		VOTOS_SALON7.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon7: " << Puntuaciones[i] << endl;
+		votos_Salon7 = Puntuaciones[i];
+	}
+	// cout << "En el vector Votos_Salon7: " << VOTOS_SALON7.size() << endl;
+	for (int i = 14; i < 15; i++) // Votos_Salon10
+	{
+		VOTOS_SALON10.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		votos_Salon10 = Puntuaciones[i];
+	}
+	// cout << "En el vector Votos_Salon10: " << VOTOS_SALON10.size() << endl;
+	nueva_Partida();
 }
+
 
 /* Comandos de comandos menu*/
 void Menu_Principal()
@@ -958,6 +1121,7 @@ void Menu_Principal()
 	}
 	else if (opcionesMenu == "2" || opcionesMenu == "cargar_partida")
 	{ // En esta seccion se abrira el nuevo archivo creado con la nueva informacion que se almaceno
+		cargar_partida();
 		cout << "/* ESPERE MIENTRAS SE CARGA LA PARTIDA... */" << endl;
 		cout << endl;
 	}
@@ -981,7 +1145,6 @@ void Menu_Principal()
 		cout << "C0001: (!) Comando incorrecto, posible error de escritura: " << opcionesMenu << endl;
 		cout << endl;
 	}
-
 }
 
 /* MAIN */

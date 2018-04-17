@@ -2,10 +2,9 @@
 
 
 
-Jugador::Jugador(string nombre, int coins)
+Jugador::Jugador(string nombre)
 {
 	NombreJugador = nombre;
-	dinero = coins;
 }
 
 

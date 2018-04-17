@@ -11,7 +11,7 @@ public:
 	string NombreJugador;
 	int dinero;
 
-	Jugador(string nombre, int coins);
+	Jugador(string nombre);
 	~Jugador();
 
 
