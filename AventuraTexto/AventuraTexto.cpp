@@ -56,7 +56,23 @@ vector <int> VOTOS_SALON2;
 vector <int> VOTOS_SALON6;
 vector <int> VOTOS_SALON7;
 vector <int> VOTOS_SALON10;
-						/* Variables lagunas legales */
+
+vector <int> VISITADO_SALON1;
+vector <int> VISITADO_SALON2;
+vector <int> VISITADO_SALON6;
+vector <int> VISITADO_SALON7;
+vector <int> VISITADO_SALON10;
+vector <int> VISITADO_PASILLO1;
+vector <int> VISITADO_PASILLO2;
+vector <int> VISITADO_PASILLO3;
+vector <int> VISITADO_PASILLO4;
+vector <int> VISITADO_PASILLO5;
+vector <int> VISITADO_PASILLO6;
+vector <int> VISITADO_PASILLO7;
+vector <int> VISITADO_PASILLO8;
+
+
+/* Variables lagunas legales */
 int dinero_Jugador = 200;
 int popularidad = 0;
 int seguidores = 0;
@@ -72,7 +88,7 @@ int votos_Salon6 = 0;
 int votos_Salon7 = 0;
 int votos_Salon10 = 0;
 
-/* CUARTO VISITADO */
+/* CUARTOS VISITADO */
 
 int visitado_Salon1 = 0;
 int visitado_Salon2 = 0;
@@ -167,7 +183,7 @@ void Movimiento()
 // si mapa(fila x columna) && 'palabra' en arreglo, se ejecuta el paso de cuarto4
 void SALON_1() // Para conseguir el seguidor se requiere de 2 votos y 1 despensa, $90 pesos
 {
-	if (Mapa_Escuela[fila_X][columna_Y] == 1)
+	if (Mapa_Escuela[fila_X][columna_Y] == 1 )
 	{
 		Cuartos Salon_1(string("Salon 1"), string("En este salon se encuentra el representante de Zapopan."), string("Sur"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_UNO, objetos_Cuarto::PISTA_UNO, personas_Cuarto::GOBERNADOR_LEMUS);
 		cout << "Nombre del salon: " << Salon_1.nombreSalon << endl;
@@ -175,6 +191,10 @@ void SALON_1() // Para conseguir el seguidor se requiere de 2 votos y 1 despensa
 		cout << "Direcciones: " << Salon_1.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Salon_1.acciones << endl;
 		// cout << "Numero Cuarto: " << Salon_1.numeroHabitacion << endl;
+	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 1 && visitado_Salon1 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Salon1 += 1;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -220,6 +240,10 @@ void SALON_2() // Para conseguir al seguidor se requiere
 		cout << "Direcciones: " << Salon_2.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Salon_2.acciones << endl;
 		// cout << "Numero Cuarto: " << Salon_2.numeroHabitacion << endl;
+	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 2 && visitado_Salon2 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Salon2 += 1;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -267,6 +291,10 @@ void SALON_6()
 		cout << "Acciones que se pueden realizar: " << Salon_6.acciones << endl;
 		// cout << "Numero Cuarto: " << Salon_6.numeroHabitacion << endl;
 	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 6 && visitado_Salon6 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Salon6 += 1;
+	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "examinar" && instruccion == "salon")
 	{
 		Cuartos Salon_6(string("Salon 6"), string("Hay una nota en el suelo."), string("Norte"), string("examinar salon, intentar hablar, convencer publico"), NumSalones::SALON_SEIS, objetos_Cuarto::PISTA_TRES, personas_Cuarto::GOBERNADOR_ARISTOTELES);
@@ -310,6 +338,10 @@ void SALON_7() // Para conseguir al seguidor se requiere 4 votos y 5 despensas, 
 		cout << "Direcciones: " << Salon_7.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Salon_7.acciones << endl;
 		// cout << "Numero Cuarto: " << Salon_7.numeroHabitacion << endl;
+	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 7 && visitado_Salon7 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Salon7 += 1;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -355,6 +387,10 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 		cout << "Direcciones: " << Salon_10.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Salon_10.acciones << endl;
 		// cout << "Numero Cuarto: " << Salon_10.numeroHabitacion << endl;
+	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 10 && visitado_Salon10 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Salon10 += 1;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -450,6 +486,10 @@ void PASILLO_1()
 		cout << "Acciones que se pueden realizar: " << Pasillo_1.acciones << endl;
 		// cout << "Numero Cuarto: " << Pasillo_1.numeroHabitacion << endl;
 	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 3 && visitado_Pasillo1 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Pasillo1 += 1;
+	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 3 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_1(string("Pasillo 1"), string("Casilleros alrededor"), string("Norte, Sur, Este"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_TRES, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
@@ -471,6 +511,10 @@ void PASILLO_2()
 		cout << "Direcciones: " << Pasillo_2.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_2.acciones << endl;
 		// cout << "Numero Cuarto: " << Pasillo_2.numeroHabitacion << endl;
+	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 4 && visitado_Pasillo2 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Pasillo2 += 1;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 4 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -494,6 +538,10 @@ void PASILLO_3()
 		cout << "Acciones que se pueden realizar: " << Pasillo_3.acciones << endl;
 		// cout << "Numero Cuarto: " << Pasillo_3.numeroHabitacion << endl;
 	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 5 && visitado_Pasillo3 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Pasillo3 += 1;
+	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 5 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_3(string("Pasillo 3"), string("Casilleros alrededor"), string("Norte, Sur, Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_CINCO, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
@@ -515,6 +563,10 @@ void PASILLO_4()
 		cout << "Direcciones: " << Pasillo_4.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_4.acciones << endl;
 		// cout << "Numero Cuarto: " << Pasillo_4.numeroHabitacion << endl;
+	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 8 && visitado_Pasillo4 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Pasillo4 += 1;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 8 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -538,6 +590,10 @@ void PASILLO_5()
 		cout << "Acciones que se pueden realizar: " << Pasillo_5.acciones << endl;
 		// cout << "Numero Cuarto: " << Pasillo_5.numeroHabitacion << endl;
 	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 9 && visitado_Pasillo5 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Pasillo5 += 1;
+	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 9 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_5(string("Pasillo 5"), string("Casilleros alrededor"), string("Sur, Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_NUEVE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
@@ -559,6 +615,10 @@ void PASILLO_6()
 		cout << "Direcciones: " << Pasillo_6.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_6.acciones << endl;
 		// cout << "Numero Cuarto: " << Pasillo_6.numeroHabitacion << endl;
+	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 11 && visitado_Pasillo6 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Pasillo6 += 1;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 11 && Accion == "examinar" && instruccion == "pasillo")
 	{
@@ -582,6 +642,10 @@ void PASILLO_7()
 		cout << "Acciones que se pueden realizar: " << Pasillo_7.acciones << endl;
 		// cout << "Numero Cuarto: " << Pasillo_7.numeroHabitacion << endl;
 	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 12 && visitado_Pasillo7 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Pasillo7 += 1;
+	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 12 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_7(string("Pasillo 7"), string("Casilleros alrededor"), string("Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_DOCE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
@@ -603,6 +667,10 @@ void PASILLO_8()
 		cout << "Direcciones: " << Pasillo_8.opcion_Direccion << endl;
 		cout << "Acciones que se pueden realizar: " << Pasillo_8.acciones << endl;
 		// cout << "Numero Cuarto: " << Pasillo_8.numeroHabitacion << endl;
+	}
+	if (Mapa_Escuela[fila_X][columna_Y] == 13 && visitado_Pasillo8 <= 0) // Condicion del mapa para mostrarse
+	{
+		visitado_Pasillo8 += 1;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "examinar" && instruccion == "salon")
 	{
@@ -648,10 +716,10 @@ void Brujula()
 /* Funcion mapa */
 void Mapa()
 {
-
 	// Mapa
 		if (Accion == "ver" && instruccion == "mapa")
 		{
+			cout << "-----    MAPA DE LAS INSTALACIONES     -----" << endl;
 			for (int i = 0; i < 5; i++)
 			{
 
@@ -663,85 +731,163 @@ void Mapa()
 					//	cout << " ";
 					//}
 
-					if (Mapa_Escuela[i][j] == 1)
+					if (Mapa_Escuela[i][j] == 1 && visitado_Salon1 >= 1)
 					{
 						cout << "S1    ";
 						//cout << "  ______         " ;
 						//cout << " |  S1  |        " ;	   
 						//cout << " |__**__|        " ;
-
+						if (visitado_Salon1 <= 0)
+						{
+							cout << "      ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 2)
+					if (Mapa_Escuela[i][j] == 2 && visitado_Salon2 >= 1)
 					{
 						cout << "S2";
 						//cout << endl;
 						//cout << " ______ " ;
 						//cout << "|  P2  |" ;
 						//cout << "|______|" ;
-
+						if (visitado_Salon2 <= 0)
+						{
+							cout << "  ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 6)
+					if (Mapa_Escuela[i][j] == 6 && visitado_Salon6 >= 1)
 					{
 						cout << "S6    ";
 						//cout << " ______ " << endl;
 						//cout << "|  S6  |" << endl;
 						//cout << "|__**__|" << endl;
+						if (visitado_Salon6 <= 0)
+						{
+							cout << "      ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 7)
+					if (Mapa_Escuela[i][j] == 7 && visitado_Salon7 >= 1)
 					{
-						cout << "S7    ";
+						if (visitado_Salon6 <= 0)
+							cout << "      S7";
+						if (visitado_Salon6 >= 1)
+							cout << "S7";
+						if (visitado_Salon7 <= 0)
+						{
+							cout << "      ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 10)
+					if (Mapa_Escuela[i][j] == 10 && visitado_Salon10 >= 1)
 					{
-						cout << "S10";
+						
+						if (visitado_Salon7 >= 1)
+							cout << "    S10";
+						if (visitado_Salon6 >= 1 && visitado_Salon7 <= 0)
+							cout << "      S10";
+						if (visitado_Salon6 <= 0 && visitado_Salon7 <= 0)
+							cout << "        S10";
+						if (visitado_Salon10 <= 0)
+						{
+							cout << "  ";
+						}
 					}
 
-					if (Mapa_Escuela[i][j] == 3)
+					if (Mapa_Escuela[i][j] == 3 && visitado_Pasillo1 >= 1)
 					{
 						cout << "P1";
-						//cout << " ______         " ;
-						//cout << "            |  P1  |        " ;
-						//cout << "            |______|        " ;
+						if (visitado_Pasillo1 <= 0)
+						{
+							cout << "  ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 4)
+					if (Mapa_Escuela[i][j] == 4 && visitado_Pasillo2 >= 1)
 					{
 						cout << " P2 ";
-						//cout << endl;
-						//cout << " ______ " ;
-						//cout << "|  P2  |" ;
-						//cout << "|______|" ;
+						if (visitado_Pasillo2 <= 0)
+						{
+							cout << "    ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 5)
+					if (Mapa_Escuela[i][j] == 5 && visitado_Pasillo3 >= 1)
 					{
 						cout << "P3";
+						if (visitado_Pasillo3 <= 0)
+						{
+							cout << "  ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 8)
+					if (Mapa_Escuela[i][j] == 8 && visitado_Pasillo4 >= 1)
 					{
 						cout << " P4 ";
+						if (visitado_Pasillo4 <= 0)
+						{
+							cout << "    ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 9)
+					if (Mapa_Escuela[i][j] == 9 && visitado_Pasillo5 >= 1)
 					{
 						cout << "P5";
+						if (visitado_Pasillo5 <= 0)
+						{
+							cout << "  ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 11)
+					if (Mapa_Escuela[i][j] == 11 && visitado_Pasillo6 >= 1)
 					{
 						cout << " P6 ";
+						if (visitado_Pasillo6 <= 0)
+						{
+							cout << "    ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 12)
+					if (Mapa_Escuela[i][j] == 12 && visitado_Pasillo7 >= 1)
 					{
 						cout << "P7";
+						if (visitado_Pasillo7 <= 0)
+						{
+							cout << "  ";
+						}
 					}
-					if (Mapa_Escuela[i][j] == 13)
+					if (Mapa_Escuela[i][j] == 13 && visitado_Pasillo8 >= 1)
 					{
-						cout << " P8";
+						cout << " CP";
+						if (visitado_Pasillo8 <= 0)
+						{
+							cout << "   ";
+						}
 					}
-					//else
-					//{
-					//	cout << "  |  " << Mapa_Escuela[i][j];
-					//}
 				}
 				cout << "\n";
 			}
+			// Descripciones Salones
+			if (visitado_Salon1 >= 1)
+				cout << "S1 = Salon 1 (En el salon se encuentran dos objetos)." << endl;
+			if (visitado_Salon2 >= 1)
+				cout << "S2 = Salon 2 (En el salon se encuentran dos objetos)." << endl;
+			if (visitado_Salon6 >= 1)
+				cout << "S6 = Salon 6 (En el salon se encuentran dos objetos)." << endl;
+			if (visitado_Salon7 >= 1)
+				cout << "S7 = Salon 7 (En el salon se encuentran dos objetos)." << endl;
+			if (visitado_Salon10 >= 1)
+				cout << "S10 = Salon 10 (En el salon se encuentran dos objetos)." << endl;
+			
+			if (visitado_Pasillo1 >= 1)
+				cout << "P1 = Pasillo 1 (En el pasillo no tiene objetos)." << endl;
+			if (visitado_Pasillo2 >= 1)
+				cout << "P2 = Pasillo 2 (En el pasillo no tiene objetos)." << endl;
+			if (visitado_Pasillo3 >= 1)
+				cout << "P3 = Pasillo 3 (En el pasillo no tiene objetos)." << endl;
+			if (visitado_Pasillo4 >= 1)
+				cout << "P4 = Pasillo 4 (En el pasillo no tiene objetos)." << endl;
+			if (visitado_Pasillo5 >= 1)
+				cout << "S5 = Pasillo 5 (En el pasillo no tiene objetos)." << endl;
+			if (visitado_Pasillo6 >= 1)
+				cout << "S6 = Pasillo 6 (En el pasillo no tiene objetos)." << endl;
+			if (visitado_Pasillo7 >= 1)
+				cout << "S7 = Pasillo 7 (En el pasillo no tiene objetos)." << endl;
+			if (visitado_Pasillo8 >= 1)
+				cout << "CP = Congreso de Postulados (En el pasillo no tiene objetos)." << endl;
+			//else
+			//	cout << " ";
 		}
 }
 
@@ -898,6 +1044,47 @@ void Guardar()
 		(*Nueva_Partida) << votos_Salon10 << endl;
 		(*Nueva_Partida) << endl;
 
+		/* MAPA */
+		// Visitado_Salon1
+		(*Nueva_Partida) << visitado_Salon1 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Salon2
+		(*Nueva_Partida) << visitado_Salon2 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Salon6
+		(*Nueva_Partida) << visitado_Salon6 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Salon7
+		(*Nueva_Partida) << visitado_Salon7 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Salon10
+		(*Nueva_Partida) << visitado_Salon10 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Pasillo1
+		(*Nueva_Partida) << visitado_Pasillo1 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Pasillo2
+		(*Nueva_Partida) << visitado_Pasillo2 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Pasillo3
+		(*Nueva_Partida) << visitado_Pasillo3 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Pasillo4
+		(*Nueva_Partida) << visitado_Pasillo4 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Pasillo5
+		(*Nueva_Partida) << visitado_Pasillo5 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Pasillo6
+		(*Nueva_Partida) << visitado_Pasillo6 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Pasillo7
+		(*Nueva_Partida) << visitado_Pasillo7 << endl;
+		(*Nueva_Partida) << endl;
+		// Visitado_Pasillo8
+		(*Nueva_Partida) << visitado_Pasillo8 << endl;
+		(*Nueva_Partida) << endl;
+
 		// Se cierra el documento
 		Nueva_Partida -> close();
 
@@ -934,11 +1121,11 @@ void nueva_Partida()
 	while (true)
 	{
 		
+		Mapa(); 
 		cout << "------  DATOS INSTALACIONES  ------" << endl;
 		// Se manda a llamar las funciones de los salones
 		cout << endl;
 		Movimiento();
-		Mapa();
 		Guardar();
 		// Posicion_Actual();
 		SALON_1();
@@ -1231,6 +1418,99 @@ void cargar_partida()
 		votos_Salon10 = Puntuaciones[i];
 	}
 	// cout << "En el vector Votos_Salon10: " << VOTOS_SALON10.size() << endl;
+	for (int i = 15; i < 16; i++) // Visitado_Salon1
+	{
+		VISITADO_SALON1.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Salon1 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Salon1: " << VISITADO_SALON1.size() << endl;
+	for (int i = 16; i < 17; i++) // Visitado_Salon2
+	{
+		VISITADO_SALON2.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Salon2 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Salon2: " << VISITADO_SALON2.size() << endl;
+	for (int i = 17; i < 18; i++) // Visitado_Salon6
+	{
+		VISITADO_SALON6.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Salon6 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Salon6: " << VISITADO_SALON6.size() << endl;
+	for (int i = 18; i < 19; i++) // Visitado_Salon7
+	{
+		VISITADO_SALON7.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Salon7 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Salon7: " << VISITADO_SALON7.size() << endl;
+	for (int i = 19; i < 20; i++) // Visitado_Salon10
+	{
+		VISITADO_SALON10.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Salon10 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Salon10: " << VISITADO_SALON10.size() << endl;
+	for (int i = 20; i < 21; i++) // Visitado_Pasillo1
+	{
+		VISITADO_PASILLO1.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Pasillo1 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Pasillo1: " << VISITADO_PASILLO1.size() << endl;
+	for (int i = 21; i < 22; i++) // Visitado_Pasillo2
+	{
+		VISITADO_PASILLO2.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Pasillo2 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Pasillo2: " << VISITADO_PASILLO2.size() << endl;
+	for (int i = 22; i < 23; i++) // Visitado_Pasillo3
+	{
+		VISITADO_PASILLO3.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Pasillo3 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Pasillo3: " << VISITADO_PASILLO3.size() << endl;
+	for (int i = 23; i < 24; i++) // Visitado_Pasillo4
+	{
+		VISITADO_PASILLO4.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Pasillo4 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Pasillo4: " << VISITADO_PASILLO4.size() << endl;
+	for (int i = 24; i < 25; i++) // Visitado_Pasillo5
+	{
+		VISITADO_PASILLO5.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Pasillo5 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Pasillo5: " << VISITADO_PASILLO5.size() << endl;
+	for (int i = 25; i < 26; i++) // Visitado_Pasillo6
+	{
+		VISITADO_PASILLO6.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Pasillo6 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Pasillo6: " << VISITADO_PASILLO6.size() << endl;
+	for (int i = 26; i < 27; i++) // Visitado_Pasillo7
+	{
+		VISITADO_PASILLO7.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Pasillo7 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Pasillo7: " << VISITADO_PASILLO7.size() << endl;
+	for (int i = 27; i < 28; i++) // Visitado_Pasillo8
+	{
+		VISITADO_PASILLO8.push_back(Puntuaciones[i]);
+		// cout << "Votos_Salon10: " << Puntuaciones[i] << endl;
+		visitado_Pasillo8 = Puntuaciones[i];
+	}
+	cout << "En el vector visitado_Pasillo8: " << VISITADO_PASILLO8.size() << endl;
+
+
 	nueva_Partida();
 	Cargar_Partida -> close();
 	if (Cargar_Partida)
