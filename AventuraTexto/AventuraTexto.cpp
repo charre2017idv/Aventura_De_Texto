@@ -72,6 +72,23 @@ int votos_Salon6 = 0;
 int votos_Salon7 = 0;
 int votos_Salon10 = 0;
 
+/* CUARTO VISITADO */
+
+int visitado_Salon1 = 0;
+int visitado_Salon2 = 0;
+int visitado_Salon6 = 0;
+int visitado_Salon7 = 0;
+int visitado_Salon10 = 0;
+
+int visitado_Pasillo1 = 0;
+int visitado_Pasillo2 = 0;
+int visitado_Pasillo3 = 0;
+int visitado_Pasillo4 = 0;
+int visitado_Pasillo5 = 0;
+int visitado_Pasillo6 = 0;
+int visitado_Pasillo7 = 0;
+int visitado_Pasillo8 = 0;
+
 // SALONES
 void Posicion_Actual()
 {
@@ -628,6 +645,106 @@ void Brujula()
 	cout << endl;
 }
 
+/* Funcion mapa */
+void Mapa()
+{
+
+	// Mapa
+		if (Accion == "ver" && instruccion == "mapa")
+		{
+			for (int i = 0; i < 5; i++)
+			{
+
+				for (int j = 0; j < 11; j++)
+				{
+
+					//if (Mapa_Escuela[i][j] == 0)
+					//{
+					//	cout << " ";
+					//}
+
+					if (Mapa_Escuela[i][j] == 1)
+					{
+						cout << "S1    ";
+						//cout << "  ______         " ;
+						//cout << " |  S1  |        " ;	   
+						//cout << " |__**__|        " ;
+
+					}
+					if (Mapa_Escuela[i][j] == 2)
+					{
+						cout << "S2";
+						//cout << endl;
+						//cout << " ______ " ;
+						//cout << "|  P2  |" ;
+						//cout << "|______|" ;
+
+					}
+					if (Mapa_Escuela[i][j] == 6)
+					{
+						cout << "S6    ";
+						//cout << " ______ " << endl;
+						//cout << "|  S6  |" << endl;
+						//cout << "|__**__|" << endl;
+					}
+					if (Mapa_Escuela[i][j] == 7)
+					{
+						cout << "S7    ";
+					}
+					if (Mapa_Escuela[i][j] == 10)
+					{
+						cout << "S10";
+					}
+
+					if (Mapa_Escuela[i][j] == 3)
+					{
+						cout << "P1";
+						//cout << " ______         " ;
+						//cout << "            |  P1  |        " ;
+						//cout << "            |______|        " ;
+					}
+					if (Mapa_Escuela[i][j] == 4)
+					{
+						cout << " P2 ";
+						//cout << endl;
+						//cout << " ______ " ;
+						//cout << "|  P2  |" ;
+						//cout << "|______|" ;
+					}
+					if (Mapa_Escuela[i][j] == 5)
+					{
+						cout << "P3";
+					}
+					if (Mapa_Escuela[i][j] == 8)
+					{
+						cout << " P4 ";
+					}
+					if (Mapa_Escuela[i][j] == 9)
+					{
+						cout << "P5";
+					}
+					if (Mapa_Escuela[i][j] == 11)
+					{
+						cout << " P6 ";
+					}
+					if (Mapa_Escuela[i][j] == 12)
+					{
+						cout << "P7";
+					}
+					if (Mapa_Escuela[i][j] == 13)
+					{
+						cout << " P8";
+					}
+					//else
+					//{
+					//	cout << "  |  " << Mapa_Escuela[i][j];
+					//}
+				}
+				cout << "\n";
+			}
+		}
+}
+
 /* Funcion de comandos del menu principal */
 void comandos_Menu()
 {
@@ -714,9 +831,10 @@ void Instrucciones()
 /* Guardar */
 void Guardar()
 {
-	fstream Nueva_Partida;
-	Nueva_Partida.open("Nueva_Partida.txt", ios::out);
-	if (Nueva_Partida.fail())
+	fstream *Nueva_Partida = new fstream ("Nueva_Partida.txt", ios::out);
+	//fstream Nueva_Partida;
+	//Nueva_Partida.open("Nueva_Partida.txt", ios::out);
+	if (Nueva_Partida -> fail())
 	{
 		cout << "C0003: (!) Error de creacion de nueva partida." << endl;
 	}
@@ -724,64 +842,75 @@ void Guardar()
 	if (Accion == "guardar" && instruccion == "partida")
 	{
 		// Se almacena la 'ultima' posicion actual
-		Nueva_Partida << fila_X << endl;
-		Nueva_Partida << endl;
-		Nueva_Partida << columna_Y << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << fila_X << endl;
+		(*Nueva_Partida) << endl;
+		(*Nueva_Partida) << columna_Y << endl;
+		(*Nueva_Partida) << endl;
 		// Dinero Jugador
-		Nueva_Partida << dinero_Jugador << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << dinero_Jugador << endl;
+		(*Nueva_Partida) << endl;
 
 		// Popularidad
-		Nueva_Partida << popularidad << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << popularidad << endl;
+		(*Nueva_Partida) << endl;
 
 		// Seguidores
-		Nueva_Partida << seguidores << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << seguidores << endl;
+		(*Nueva_Partida) << endl;
 
 		// Votos
-		Nueva_Partida << votos << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << votos << endl;
+		(*Nueva_Partida) << endl;
 
 		// Despensas
-		Nueva_Partida << despensas << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << despensas << endl;
+		(*Nueva_Partida) << endl;
 
 		// Politicos
-		Nueva_Partida << politicos << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << politicos << endl;
+		(*Nueva_Partida) << endl;
 
 		// Cumplidos
-		Nueva_Partida << cumplidos << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << cumplidos << endl;
+		(*Nueva_Partida) << endl;
 
 		// Canciones 
-		Nueva_Partida << Canciones << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << Canciones << endl;
+		(*Nueva_Partida) << endl;
 
 		// Votos_Salon1
-		Nueva_Partida << votos_Salon1 << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << votos_Salon1 << endl;
+		(*Nueva_Partida) << endl;
 
 		// Votos_Salon2
-		Nueva_Partida << votos_Salon2 << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << votos_Salon2 << endl;
+		(*Nueva_Partida) << endl;
 
 		// Votos_Salon6
-		Nueva_Partida << votos_Salon6 << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << votos_Salon6 << endl;
+		(*Nueva_Partida) << endl;
 
 		// Votos_Salon7
-		Nueva_Partida << votos_Salon7 << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << votos_Salon7 << endl;
+		(*Nueva_Partida) << endl;
 
 		// Votos_Salon10
-		Nueva_Partida << votos_Salon10 << endl;
-		Nueva_Partida << endl;
+		(*Nueva_Partida) << votos_Salon10 << endl;
+		(*Nueva_Partida) << endl;
 
 		// Se cierra el documento
-		Nueva_Partida.close();
+		Nueva_Partida -> close();
+
+		if (Nueva_Partida) // Revisa que Nueva_Partida no sea nulo(vacio). REvisa que el puntero
+		{
+			cout << "/* C008: (!) RELEASED MEMORY */" << endl;
+			delete(Nueva_Partida);
+		}
+		else
+		{
+			cout << "/* C009: (!) MEMORYLEAK PROBLEM */" << endl;
+		}
+
 		cout << "/* C004: (!) SE HA GUARDADO EXITOSAMENTE LA PARTIDA */" << endl;
 		cout << endl;
 		cout << "/* Nombre de la partida guardada: Nueva_Partida.txt */" << endl;
@@ -809,6 +938,7 @@ void nueva_Partida()
 		// Se manda a llamar las funciones de los salones
 		cout << endl;
 		Movimiento();
+		Mapa();
 		Guardar();
 		// Posicion_Actual();
 		SALON_1();
@@ -892,6 +1022,7 @@ void nueva_Partida()
 			cout << endl;
 			cout << endl;
 		}
+
 		// Promocion - se gana 1 PESO
 		else if (Accion == "hacer" && instruccion == "promocion")
 		{
@@ -975,15 +1106,15 @@ void nueva_Partida()
 /* Funcion de cargar partida */
 void cargar_partida()
 {
-	string Delimiter = " ";
-	ifstream Cargar_Partida;
+	//string Delimiter = " ";
+	ifstream *Cargar_Partida = new ifstream ("Nueva_Partida.txt", ios::in);
 	int Datos;
-	Cargar_Partida.open("Nueva_Partida.txt", ios::in);
-	if (Cargar_Partida.fail())
+	//Cargar_Partida.open("Nueva_Partida.txt", ios::in);
+	if (Cargar_Partida -> fail())
 	{
 		cout << "C0005: (!) Error de Carga del archivo." << endl;
 	}
-	while (Cargar_Partida >> Datos) // Se almacenan todos los datos del archivo
+	while ((*Cargar_Partida) >> Datos) // Se almacenan todos los datos del archivo
 	{
 		Puntuaciones.push_back(Datos);
 		//cout << Datos << endl;
@@ -1101,6 +1232,16 @@ void cargar_partida()
 	}
 	// cout << "En el vector Votos_Salon10: " << VOTOS_SALON10.size() << endl;
 	nueva_Partida();
+	Cargar_Partida -> close();
+	if (Cargar_Partida)
+	{
+		cout << "/* C008: (!) RELEASED MEMORY */" << endl;
+		delete(Cargar_Partida);
+	}
+	else
+	{
+		cout << "/* C009: (!) MEMORYLEAK PROBLEM */" << endl;
+	}
 }
 
 
