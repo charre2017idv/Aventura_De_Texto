@@ -205,7 +205,7 @@ void SALON_1() // Para conseguir el seguidor se requiere de 2 votos y 1 despensa
 		Cuartos Salon_1(string("Salon 1"), string("En este salon se encuentra el representante de Zapopan."), string("Sur"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_UNO, objetos_Cuarto::PISTA_UNO, personas_Cuarto::GOBERNADOR_LEMUS);
 		cout << Salon_1.Get_Persona() << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "convencer" && instruccion == "publico" && dinero_Jugador >= 10 && votos >= 2 && despensas >= 1 && votos_Salon1 <= 0)
+	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && votos >= 2 && despensas >= 1 && votos_Salon1 <= 0)
 	{
 		seguidores += 1;
 		dinero_Jugador += 50;
@@ -215,13 +215,13 @@ void SALON_1() // Para conseguir el seguidor se requiere de 2 votos y 1 despensa
 		cout << "/* Se Otorgan 50 pesos mas al fondo de la campana electoral */" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "convencer" && instruccion == "publico" && votos < 2 && despensas < 1)
+	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "convencer" && instruccion == "politico" && votos < 2 && despensas < 1)
 	{
 		cout << endl;
-		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL PUBLICO */" << endl;
+		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL politico */" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "convencer" && instruccion == "publico" && votos_Salon1 >= 1 && votos >= 2 && despensas >= 1)
+	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "convencer" && instruccion == "politico" && votos_Salon1 >= 1 && votos >= 2 && despensas >= 1)
 	{
 		cout << endl;
 		cout << "/* YA TIENES A ESTE SEGUIDOR */" << endl;
@@ -259,7 +259,7 @@ void SALON_2() // Para conseguir al seguidor se requiere
     cout << "   '-\  _/--.<<-'      " << endl;
     cout << "      `\)     \)       " << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "convencer" && instruccion == "publico" && dinero_Jugador >= 10 && politicos >= 1 && despensas >= 8 && votos_Salon2 <= 0)
+	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && politicos >= 1 && despensas >= 8 && votos_Salon2 <= 0)
 	{
 		seguidores += 1;
 		dinero_Jugador += 50;
@@ -269,15 +269,15 @@ void SALON_2() // Para conseguir al seguidor se requiere
 		cout << "/* Se Otorgan 50 pesos mas al fondo de la campana electoral */" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "convencer" && instruccion == "publico" && politicos < 1 && despensas < 8)
+	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "convencer" && instruccion == "politico" && politicos < 1 && despensas < 8)
 	{
 		dinero_Jugador -= 25;
 		cout << endl;
-		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL PUBLICO */" << endl;
+		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL politico */" << endl;
 		cout << "/* DUARTE TE A ROBADO $25 PESOS.*/" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "convencer" && instruccion == "publico" && votos_Salon2 >= 1 && politicos >= 1 && despensas >= 8)
+	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "convencer" && instruccion == "politico" && votos_Salon2 >= 1 && politicos >= 1 && despensas >= 8)
 	{
 		cout << endl;
 		cout << "/* YA TIENES A ESTE SEGUIDOR */" << endl;
@@ -309,7 +309,7 @@ void SALON_6()
 		Cuartos Salon_6(string("Salon 6"), string("Hay una nota en el suelo."), string("Norte"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_SEIS, objetos_Cuarto::PISTA_TRES, personas_Cuarto::GOBERNADOR_ARISTOTELES);
 		cout << Salon_6.Get_Persona() << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "convencer" && instruccion == "publico" && dinero_Jugador >= 10 && Canciones >= 1 && despensas >= 6 && votos_Salon6 <= 0)
+	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && Canciones >= 1 && despensas >= 6 && votos_Salon6 <= 0)
 	{
 		seguidores += 1;
 		dinero_Jugador += 50;
@@ -319,13 +319,13 @@ void SALON_6()
 		cout << "/* Se Otorgan 50 pesos mas al fondo de la campana electoral */" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "convencer" && instruccion == "publico" && Canciones < 1 && despensas < 6)
+	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "convencer" && instruccion == "politico" && Canciones < 1 && despensas < 6)
 	{
 		cout << endl;
-		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL PUBLICO */" << endl;
+		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL politico */" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "convencer" && instruccion == "publico" && votos_Salon6 >= 1 && Canciones >= 1 && despensas >= 6)
+	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "convencer" && instruccion == "politico" && votos_Salon6 >= 1 && Canciones >= 1 && despensas >= 6)
 	{
 		cout << endl;
 		cout << "/* YA TIENES A ESTE SEGUIDOR */" << endl;
@@ -357,7 +357,7 @@ void SALON_7() // Para conseguir al seguidor se requiere 4 votos y 5 despensas, 
 		Cuartos Salon_7(string("Salon 7"), string("Esta en su segunda propuesta de campana."), string("Norte"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_SIETE, objetos_Cuarto::PISTA_CUATRO, personas_Cuarto::GOBERNADOR_MARGARITA);
 		cout << Salon_7.Get_Persona() << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "convencer" && instruccion == "publico" && dinero_Jugador >= 10 && votos >= 4 && despensas >= 5 && votos_Salon7 <= 0)
+	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && votos >= 4 && despensas >= 5 && votos_Salon7 <= 0)
 	{
 		seguidores += 1;
 		dinero_Jugador += 50;
@@ -367,13 +367,13 @@ void SALON_7() // Para conseguir al seguidor se requiere 4 votos y 5 despensas, 
 		cout << "/* Se Otorgan 50 pesos mas al fondo de la campana electoral */" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "convencer" && instruccion == "publico" && votos < 4 && despensas < 5)
+	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "convencer" && instruccion == "politico" && votos < 4 && despensas < 5)
 	{
 		cout << endl;
-		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL PUBLICO */" << endl;
+		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL politico */" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "convencer" && instruccion == "publico" && votos_Salon7 >= 1 && votos >= 4 && despensas >= 5)
+	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "convencer" && instruccion == "politico" && votos_Salon7 >= 1 && votos >= 4 && despensas >= 5)
 	{
 		cout << endl;
 		cout << "/* YA TIENES A ESTE SEGUIDOR */" << endl;
@@ -453,7 +453,7 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 		despensas += 1;
 		cout << "/* HAS COMPRADO UNA DESPENSA: */" << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "convencer" && instruccion == "publico" && dinero_Jugador >= 10 && votos >= 1 && politicos >= 1 && Canciones >= 1 && despensas >= 1 && votos_Salon10 <= 0)
+	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && votos >= 1 && politicos >= 1 && Canciones >= 1 && despensas >= 1 && votos_Salon10 <= 0)
 	{
 		seguidores += 1;
 		dinero_Jugador += 50;
@@ -463,13 +463,13 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 		cout << "/* Se Otorgan 50 pesos mas al fondo de la campana electoral */" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "convencer" && instruccion == "publico" && votos < 1 && politicos < 1 && Canciones < 1 && despensas < 1)
+	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "convencer" && instruccion == "politico" && votos < 1 && politicos < 1 && Canciones < 1 && despensas < 1)
 	{
 		cout << endl;
-		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL PUBLICO */" << endl;
+		cout << "/* NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA CONVENCER AL politico */" << endl;
 		cout << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "convencer" && instruccion == "publico" && votos_Salon10 >= 1 && politicos >= 1 && despensas >= 1)
+	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "convencer" && instruccion == "politico" && votos_Salon10 >= 1 && politicos >= 1 && despensas >= 1)
 	{
 		cout << endl;
 		cout << "/* YA TIENES A ESTE SEGUIDOR */" << endl;
@@ -478,7 +478,7 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 }
 
 // PASILLOS
-void PASILLO_1()
+void PASILLO_1() 
 {
 	if (Mapa_Escuela[fila_X][columna_Y] == 3)
 	{
@@ -664,7 +664,7 @@ void PASILLO_8()
 {
 	if (Mapa_Escuela[fila_X][columna_Y] == 13)
 	{
-		Cuartos Pasillo_8(string("Congreso de postulados"), string("En este lugar se decide quien sera elegido."), string("Oeste"), string("examinar pasillo, intentar hablar, convencer publico"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		Cuartos Pasillo_8(string("Congreso de postulados"), string("En este lugar se decide quien sera elegido."), string("Oeste"), string("examinar pasillo, intentar hablar, convencer politico"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
 		cout << "Nombre del salon: " << Pasillo_8.nombreSalon << endl;
 		cout << "Descripcion: " << Pasillo_8.descripcionCuarto << endl;
 		cout << "Direcciones: " << Pasillo_8.opcion_Direccion << endl;
@@ -685,7 +685,7 @@ void PASILLO_8()
 		Cuartos Pasillo_8(string("Pasillo 8"), string("En este lugar se decide quien sera elegido."), string("Este"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
 		cout << Pasillo_8.Get_Persona() << endl;
 	}
-	if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "publico" && popularidad <= 100 && seguidores <= 3)
+	if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "politico" && popularidad <= 100 && seguidores <= 3)
 	{
 		cout << "/*  NO CUENTAS CON LOS REQUISITOS NECESARIOS PARA SER ELEGIDO COMO REPRESENTANTE. */" << endl;
 	}
@@ -895,6 +895,7 @@ void Mapa()
 }
 
 /* Funcion de comandos del menu principal */
+
 void comandos_Menu()
 {
 	cout << "Tecle la accion que quiera realizar:" << endl;
@@ -943,7 +944,7 @@ void Como_Jugar()
 	cout << "===============================================================================" << endl;
 	cout << "= Mecanica de juego: Para que el candidato pueda representar al pais sera     =" << endl;
 	cout << "= necesario que intente hablar con las personas, busque y examine en busca    =" << endl;
-	cout << "= de alguna pista y convensa al publico para que sean un seguidor mas.        =" << endl;
+	cout << "= de alguna pista y convensa al politico5 para que sean un seguidor mas.        =" << endl;
 	cout << "===============================================================================" << endl;
 	cout << endl;
 }
@@ -1265,7 +1266,7 @@ void nueva_Partida()
 			cout << endl;
 		}
 		// GANAR
-		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "publico" && popularidad >= 10 && seguidores == 1) // El contador de ganar sera el que almacenara los puntos para ganar
+		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "politico" && popularidad >= 10 && seguidores == 1) // El contador de ganar sera el que almacenara los puntos para ganar
 		{
 			Cuartos Pasillo_8(string("Pasillo 8"), string("Casilleros alrededor"), string("Este"), string("examinar salon, intentar hablar"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
 			cout << endl;
@@ -1282,7 +1283,7 @@ void nueva_Partida()
 			cout << endl;
 			break;
 		}
-		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "publico" && popularidad >= 10 && seguidores == 2) // El contador de ganar sera el que almacenara los puntos para ganar
+		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "politico" && popularidad >= 10 && seguidores == 2) // El contador de ganar sera el que almacenara los puntos para ganar
 		{
 			Cuartos Pasillo_8(string("Pasillo 8"), string("Casilleros alrededor"), string("Este"), string("examinar salon, intentar hablar"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
 			cout << endl;
@@ -1299,7 +1300,7 @@ void nueva_Partida()
 			cout << endl;
 			break;
 		}
-		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "publico" && popularidad >= 10 && seguidores == 3) // El contador de ganar sera el que almacenara los puntos para ganar
+		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "politico" && popularidad >= 10 && seguidores == 3) // El contador de ganar sera el que almacenara los puntos para ganar
 		{
 			cout << endl;
 			cout << "/* HAS SIDO ELEGIDO PARA GOBERNAR */" << endl;
@@ -1315,7 +1316,7 @@ void nueva_Partida()
 			cout << endl;
 			break;
 		}
-		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "publico" && popularidad >= 15 && seguidores >= 4) // El contador de ganar sera el que almacenara los puntos para ganar
+		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "politico" && popularidad >= 15 && seguidores >= 4) // El contador de ganar sera el que almacenara los puntos para ganar
 		{
 			Cuartos Pasillo_8(string("Pasillo 8"), string("Casilleros alrededor"), string("Este"), string("examinar salon, intentar hablar"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
 			cout << "/* HAS SIDO ELEGIDO PARA GOBERNAR */" << endl;
@@ -1329,7 +1330,7 @@ void nueva_Partida()
 			cout << "/* GRACIAS POR JUGAR */" << endl;
 			break;
 		}
-		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "publico" && popularidad >= 10 && seguidores == 5) // El contador de ganar sera el que almacenara los puntos para ganar
+		if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "politico" && popularidad >= 10 && seguidores == 5) // El contador de ganar sera el que almacenara los puntos para ganar
 		{
 			Cuartos Pasillo_8(string("Pasillo 8"), string("Casilleros alrededor"), string("Este"), string("examinar salon, intentar hablar"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
 			cout << endl;
@@ -1657,3 +1658,5 @@ int main()
 	cin.get();
 	return 0;
 }
+
+
