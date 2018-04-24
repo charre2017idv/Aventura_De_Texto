@@ -198,11 +198,13 @@ void SALON_1() // Para conseguir el seguidor se requiere de 2 votos y 1 despensa
 	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "examinar" && instruccion == "salon")
 	{
 		Cuartos Salon_1(string("Salon 1"), string("En este salon se encuentra el representante de Zapopan."), string("Sur"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_UNO, objetos_Cuarto::PISTA_UNO, personas_Cuarto::GOBERNADOR_LEMUS);
+		cout << endl;
 		cout << Salon_1.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Salon_1(string("Salon 1"), string("En este salon se encuentra el representante de Zapopan."), string("Sur"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_UNO, objetos_Cuarto::PISTA_UNO, personas_Cuarto::GOBERNADOR_LEMUS);
+		cout << endl;
 		cout << Salon_1.Get_Persona() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 1 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && votos >= 2 && despensas >= 1 && votos_Salon1 <= 0)
@@ -247,17 +249,19 @@ void SALON_2() // Para conseguir al seguidor se requiere
 	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "examinar" && instruccion == "salon")
 	{
 		Cuartos Salon_2(string("Salon 2"), string("Actualmente tiene problemas en el paraiso...  (fiscal)"), string("Sur"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_DOS, objetos_Cuarto::PISTA_DOS, personas_Cuarto::BOSS_DUARTE);
+		cout << endl;
 		cout << Salon_2.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Salon_2(string("Salon 2"), string("Actualmente tiene problemas en el paraiso...  (fiscal)"), string("Sur"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_DOS, objetos_Cuarto::PISTA_DOS, personas_Cuarto::BOSS_DUARTE);
+		cout << endl;
 		cout << Salon_2.Get_Persona() << endl;
-	cout << "                c._    " << endl;
-    cout << "      .``````-C`  o'-. " << endl;
-    cout << "    _/   \       _..'  " << endl;
-    cout << "   '-\  _/--.<<-'      " << endl;
-    cout << "      `\)     \)       " << endl;
+		cout << "                c._    " << endl;
+		cout << "      .``````-C`  o'-. " << endl;
+		cout << "    _/   \       _..'  " << endl;
+		cout << "   '-\  _/--.<<-'      " << endl;
+		cout << "      `\)     \)       " << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 2 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && politicos >= 1 && despensas >= 8 && votos_Salon2 <= 0)
 	{
@@ -302,11 +306,13 @@ void SALON_6()
 	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "examinar" && instruccion == "salon")
 	{
 		Cuartos Salon_6(string("Salon 6"), string("Hay una nota en el suelo."), string("Norte"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_SEIS, objetos_Cuarto::PISTA_TRES, personas_Cuarto::GOBERNADOR_ARISTOTELES);
+		cout << endl;
 		cout << Salon_6.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Salon_6(string("Salon 6"), string("Hay una nota en el suelo."), string("Norte"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_SEIS, objetos_Cuarto::PISTA_TRES, personas_Cuarto::GOBERNADOR_ARISTOTELES);
+		cout << endl;
 		cout << Salon_6.Get_Persona() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 6 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && Canciones >= 1 && despensas >= 6 && votos_Salon6 <= 0)
@@ -350,11 +356,13 @@ void SALON_7() // Para conseguir al seguidor se requiere 4 votos y 5 despensas, 
 	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "examinar" && instruccion == "salon")
 	{
 		Cuartos Salon_7(string("Salon 7"), string("Esta en su segunda propuesta de campana."), string("Norte"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_SIETE, objetos_Cuarto::PISTA_CUATRO, personas_Cuarto::GOBERNADOR_MARGARITA);
+		cout << endl;
 		cout << Salon_7.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Salon_7(string("Salon 7"), string("Esta en su segunda propuesta de campana."), string("Norte"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_SIETE, objetos_Cuarto::PISTA_CUATRO, personas_Cuarto::GOBERNADOR_MARGARITA);
+		cout << endl;
 		cout << Salon_7.Get_Persona() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 7 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && votos >= 4 && despensas >= 5 && votos_Salon7 <= 0)
@@ -414,11 +422,13 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "examinar" && instruccion == "salon")
 	{
 		Cuartos Salon_10(string("Politics - Shop"), string("Se dice que los duenos vienen de Rusia."), string("Norte"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::CARLOS_SALINAS);
+		cout << endl;
 		cout << Salon_10.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Salon_10(string("Politics - Shop"), string("Se dice que los duenos vienen de Rusia."), string("Norte"), string("examinar salon, intentar hablar, convencer politico"), NumSalones::SALON_DIEZ, objetos_Cuarto::PISTA_CINCO, personas_Cuarto::CARLOS_SALINAS);
+		cout << endl;
 		cout << Salon_10.Get_Persona() << endl;
 	}
 	// Comprar Politicos + 5 puntos al marcador de ganar
@@ -428,6 +438,7 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 		popularidad += 5;
 		politicos += 1;
 		cout << "/* HAS COMPRADO UN POLITICO */" << endl;
+		cout << "Politicos: " << politicos << endl;
 	}
 	// Comprar Votos + 3 puntos al marcador de ganar
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "comprar" && instruccion == "votos" && dinero_Jugador > 0)
@@ -436,6 +447,7 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 		popularidad += 3;
 		votos += 1;
 		cout << "/* HAS COMPRADO UN VOTO */" << endl;
+		cout << "Votos: " << votos << endl;
 	}
 	// Comprar Cancion + 2 puntos al marcador de ganar
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "comprar" && instruccion == "cancion" && dinero_Jugador > 0)
@@ -444,6 +456,7 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 		popularidad += 2;
 		Canciones += 1;
 		cout << "/* HAS COMPRADO UNA CANCION */" << endl;
+		cout << "Canciones: " << Canciones << endl;
 	}
 	// Comprar despensas + 1 punto al marcador de ganar
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "comprar" && instruccion == "despensas" && dinero_Jugador > 0)
@@ -452,6 +465,7 @@ void SALON_10() // Tienda - Para conseguir su voto se requieren 150 pesos para q
 		popularidad += 1;
 		despensas += 1;
 		cout << "/* HAS COMPRADO UNA DESPENSA: */" << endl;
+		cout << "Despensas: " << despensas << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 10 && Accion == "convencer" && instruccion == "politico" && dinero_Jugador >= 10 && votos >= 1 && politicos >= 1 && Canciones >= 1 && despensas >= 1 && votos_Salon10 <= 0)
 	{
@@ -496,11 +510,13 @@ void PASILLO_1()
 	if (Mapa_Escuela[fila_X][columna_Y] == 3 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_1(string("Pasillo 1"), string("Casilleros alrededor"), string("Norte, Sur, Este"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_TRES, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout   << Pasillo_1.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 3 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Pasillo_1(string("Pasillo 1"), string("Casilleros alrededor"), string("Norte, Sur, Este"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_TRES, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout << Pasillo_1.Get_Persona() << endl;
 	}
 }
@@ -522,11 +538,13 @@ void PASILLO_2()
 	if (Mapa_Escuela[fila_X][columna_Y] == 4 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_2(string("Pasillo 2"), string("Casilleros alrededor."), string("Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_CUATRO, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout   << Pasillo_2.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 4 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Pasillo_2(string("Pasillo 2"), string("Casilleros alrededor."), string("Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_CUATRO, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout << Pasillo_2.Get_Persona() << endl;
 	}
 }
@@ -548,11 +566,13 @@ void PASILLO_3()
 	if (Mapa_Escuela[fila_X][columna_Y] == 5 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_3(string("Pasillo 3"), string("Casilleros alrededor"), string("Norte, Sur, Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_CINCO, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout   << Pasillo_3.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 5 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Pasillo_3(string("Pasillo 3"), string("Casilleros alrededor"), string("Norte, Sur, Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_CINCO, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout << Pasillo_3.Get_Persona() << endl;
 	}
 }
@@ -574,11 +594,13 @@ void PASILLO_4()
 	if (Mapa_Escuela[fila_X][columna_Y] == 8 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_4(string("Pasillo 4"), string("Casilleros alrededor"), string("Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_OCHO, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout   << Pasillo_4.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 8 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Pasillo_4(string("Pasillo 4"), string("Casilleros alrededor"), string("Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_OCHO, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout << Pasillo_4.Get_Persona() << endl;
 	}
 }
@@ -600,11 +622,13 @@ void PASILLO_5()
 	if (Mapa_Escuela[fila_X][columna_Y] == 9 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_5(string("Pasillo 5"), string("Casilleros alrededor"), string("Sur, Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_NUEVE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout   << Pasillo_5.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 9 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Pasillo_5(string("Pasillo 5"), string("Casilleros alrededor"), string("Sur, Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_NUEVE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout << Pasillo_5.Get_Persona() << endl;
 	}
 }
@@ -626,11 +650,13 @@ void PASILLO_6()
 	if (Mapa_Escuela[fila_X][columna_Y] == 11 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_6(string("Pasillo 6"), string("Casilleros alrededor"), string("Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_ONCE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout   << Pasillo_6.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 11 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Pasillo_6(string("Pasillo 6"), string("Casilleros alrededor"), string("Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_ONCE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout << Pasillo_6.Get_Persona() << endl;
 	}
 }
@@ -652,11 +678,13 @@ void PASILLO_7()
 	if (Mapa_Escuela[fila_X][columna_Y] == 12 && Accion == "examinar" && instruccion == "pasillo")
 	{
 		Cuartos Pasillo_7(string("Pasillo 7"), string("Casilleros alrededor"), string("Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_DOCE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout   << Pasillo_7.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 12 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Pasillo_7(string("Pasillo 7"), string("Casilleros alrededor"), string("Este, Oeste"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_DOCE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout << Pasillo_7.Get_Persona() << endl;
 	}
 }
@@ -678,11 +706,13 @@ void PASILLO_8()
 	if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "examinar" && instruccion == "salon")
 	{
 		Cuartos Pasillo_8(string("Pasillo 8"), string("En este lugar se decide quien sera elegido."), string("Este"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout << Pasillo_8.Get_Item() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "intentar" && instruccion == "hablar")
 	{
 		Cuartos Pasillo_8(string("Pasillo 8"), string("En este lugar se decide quien sera elegido."), string("Este"), string("examinar pasillo, intentar hablar"), NumSalones::SALON_TRECE, objetos_Cuarto::PISTA_VACIO, personas_Cuarto::NINGUNA_PERSONA);
+		cout << endl;
 		cout << Pasillo_8.Get_Persona() << endl;
 	}
 	if (Mapa_Escuela[fila_X][columna_Y] == 13 && Accion == "convencer" && instruccion == "politico" && popularidad <= 100 && seguidores <= 3)
@@ -980,9 +1010,6 @@ void Instrucciones()
 /* Accions Generales */
 void AccionesGenerales()
 {
-	
-	vector <string> PalabrasAccion = { "ir", "examinar", "guardar", "salir", "ver", "intentar", "hacer", "exit" };
-	vector <string> PalabrasInstruccion = { "norte", "sur", "este", "oeste", "salon", "pasillo", "inventario", "brujula", "instrucciones", "partida", "hablar", "game", "jugar", "stats", "promocion" };
 	Jugador Usuario(string("charre"));
 	// ACCIONES
 	system("cls");
@@ -1358,11 +1385,16 @@ void nueva_Partida()
 			cout << "   .-:-.    " << endl;
 			cout << "  / RIP \   " << endl;
 			cout << "  |     |   " << endl;
-			cout << " \\  ___|// " << endl;
+			cout << "\\|_____|// " << endl;
 
 			cout << "Fondos: " << dinero_Jugador << endl;
 			cout << "Puntos alcanzados: " << popularidad << endl;
 			cout << endl;
+
+			cout << "/* !!! GRACIAS POR JUGAR, SUERTE PARA LA PROXIMA !!! */" << endl;
+			cout << "          /* El juego se cerrara en breve. */" << endl;
+			Sleep(6000);
+			exit(1);
 			break;
 		}
 		
