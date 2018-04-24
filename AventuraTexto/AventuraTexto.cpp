@@ -1678,7 +1678,7 @@ void Menu_Principal()
 	}
 }
 
-/* MAIN */
+/* MAIN */ 
 int main()
 {
 	while (true) // Si un comando es incorrecto se vuelve a preguntar, si se guarda partida se regresa al lobbie
